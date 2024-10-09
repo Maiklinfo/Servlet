@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Калькулятор</title>
+  </head>
+  <body>
+    <h1>Калькулятор</h1>
+    <form id="calculatorForm">
+      <label for="number1">Число а:</label>
+      <input type="number" id="number1" name="a" required=""/>
+
+      <label for="number2">Число b:</label>
+      <input type="number" id="number2" name="b" required=""/>
+
+      <label for="operation">Арифметическое действие:</label>
+      <select id="operation" name="math" required="">
+        <option value="+">Сложение</option>
+        <option value="-">Вычитание</option>
+        <option value="*">Умножение</option>
+        <option value="/">Деление</option>
+      </select>
+      <br/>
+      <button type="submit">Вычислить</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+      document.getElementById("calculatorForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const form = event.target;
+      const formData = new FormData(form);
+
+      fetch("/calculator", {
+      method: "POST",
+      body: JSON.stringify(Object.fromEntries(formData.entries())),
+      headers: {
+      "Content-Type": "application/json"
+      }
+      })
+      .then(response => response.json())
+      .then(data => {
+      document.getElementById("result").innerText = "Результат: " + data.result;
+      })
+      .catch(error => {
+      console.error("Ошибка при запросе к серверу:", error);
+      document.getElementById("result").innerText = "Произошла ошибка при выполнении запроса.";
+      });
+      });
+    </script>
+  </body>
+</html>
+
