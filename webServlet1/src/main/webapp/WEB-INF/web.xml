@@ -1,7 +1,42 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
 
-<web-app>
-  <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+    <servlet-name>addServlet</servlet-name>
+    <servlet-class>ServletAdd</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>addServlet</servlet-name>
+    <url-pattern>/add</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>listServlet</servlet-name>
+    <servlet-class>ServletList</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>listServlet</servlet-name>
+    <url-pattern>/get</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>deleteServlet</servlet-name>
+    <servlet-class>ServletDelete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>deleteServlet</servlet-name>
+    <url-pattern>/delete</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>updateServlet</servlet-name>
+    <servlet-class>ServletUpdate</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>updateServlet</servlet-name>
+    <url-pattern>/update</url-pattern>
+  </servlet-mapping>
 </web-app>
